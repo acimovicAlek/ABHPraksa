@@ -40,7 +40,16 @@ Cons:
 
 20. Prilikom editovanja Engagementa na svom profilu grafike se poremente ili nestanu
 
-21. Prilikom editovanja licnih informacija nije uradjena verifikacija 
+21. Prilikom editovanja licnih informacija nije uradjena verifikacija, također moguce je unositi ogromne podatke 
+
+22. Moguce je kreirati projekte sa istim imenima, duplikate
+
+23. Koja je razlika između arhiviranja i brisanja projekata? Arhiviranjem se brise projekat, sto vise ne vidim nigdje na prjektu da postoji ista planirano za arhiviranje zavrsenih prijekata.
+// Arhivirani projekat se ponasa cudno, u pocetku se izguvi i onda se pojavi među aktivnim projektima, ali ne i među svim projektima. Nakon relogovanja se opet izgubio totalno.
+ 
+24. Neobrađen izuzetak, ogroman unos izaziva serverski Error ali korisnik nije obavjesten 
+
+25.
 
 
 Grey zone:
