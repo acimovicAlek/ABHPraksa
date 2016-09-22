@@ -1,0 +1,58 @@
+Testing of abhapp
+
+Cons:
+1. Moguce se se registrovati sa kombinacijom blank znakova i specijalnim znakom kao npr "    ࿊" za ime i prezime
+2. Moguce je kreirati sifre sa kombinacijom blank znakova i specijalnih znakova kao npr "   ࿊", ovo ne mora biti toliko ni negativno sa aspekta sigurnosti, medjutim koristnici greškom mogu unijeti sličnu kombinaciju i nepotrebno zakomplikvati proces registracije
+
+3. Moguca funkcionalnost: prilikom pregleda zahtjeva nije moguce uci klikom na profil korisnika, napraviti radi lakse navigacije i pristupa informacijama, da li je namjerno napravljeno radi zastite
+
+4. Moguce je kreiranje racuna sa kratkim siframa pa cak i sa jednim znakom
+
+5. Prilikom kreiranja racuna kao uposlenik i izbora firme ne postoji nikakav mehanizam za pretragu firmi što može napraviti probleme ukoliko ih ima puno ili cak ako ima vise firmi sa slicnim imenom moze doci do konfuzije 
+
+6. Moguca dodatna funkcionalnost: pretrazivaje usera i po mailu
+
+7. Prikikom kreiranja Founding projekata pri kropanju logao slika se ne ucitava kompletna iako nije naznaceno kolika maksimalna velicina ne bi trebala biti, naznacena je minimalna
+
+8. Prilikom kreiranje Founding projekata za sve zahtjevane kategorije moguce je izbjeci validan unos kombinacjom space-ova i jednog od karaktera 
+
+9. Moguce je kreirati Founding projekat koji je vec zavrsio!!!
+
+10. Pri dodavanju sponzora nije moguce vidjeti ostale firme odnostno spaceove vec samo unutar svog spacea, da li to ima smisla ? Takodjer je moguce pozvati samoga sebe?
+
+11. Prilikom kreiranja Founding projekata pri dodavanju dodataka ne rade dugmad za izmjenu pogleda iz list u thumb i obratno, jedini prikaz je list. Takodjer ne radi ni na prgledu projekta
+
+12. Moguca funkcionalnost: Prilikom lajkanja Founding projekata bilo bi fino da se ne mora uci u detaljan opis projekta 
+
+13. Sve osobe unutar kompanije imaju isti pristup
+
+14. Bespotrebne notifikacije kada sam sebi respondas na activity 
+
+15. Mozes sam sebe pozvati na resp
+
+16. Kod edita zalaganja tekst se preklapa sa grafikom (?)
+
+17. Nije moguce ponistiti ili promjeniti lajk/dislike
+
+18. Prilikom pokretanja Founding projekta ukoliko editujem holdere za responsability navigacija nazad odluta na eitovanje responibilitya
+
+19. Editovanje responability-a u projektu i pokusaj dodavanja slobodnog zaduzenja dovodi to stranice za startanje projekta u kojoj ne radi dugme start project
+
+20. Prilikom editovanja Engagementa na svom profilu grafike se poremente ili nestanu
+
+21. Prilikom editovanja licnih informacija nije uradjena verifikacija 
+
+
+Grey zone:
+
+1. Imenovanje projekata opet prihvata specijalne znakove, nije nuzno lose
+
+
+
+Kreirani user-i:
+
+-abhint@test.com | test123
+-testUser1@test.com |     ࿊
+-testUser2@test.com | 1
+
+
