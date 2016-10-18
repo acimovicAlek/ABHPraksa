@@ -270,6 +270,7 @@ public class SmokeTest {
         Action action = move.dragAndDropBy(slider,20, 0).build();
         action.perform();
 
+        Assert.assertTrue(driver.findElement(By.xpath(".//*[@class='buttons']/button")).isEnabled());
         driver.findElement(By.xpath(".//*[@class='buttons']/button")).click();
 
         condition = driver.findElement(By.xpath(".//span[contains(text(),'TestProject1SMOKE')]"));
