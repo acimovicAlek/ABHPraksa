@@ -170,7 +170,7 @@ public class SmokeTest {
 
     //Click invite button
     @Test(priority = 10)
-    public void openIviteForm() throws Exception {
+    public void openInviteForm() throws Exception {
         driver.findElement(By.xpath(".//*[@class='project-responsibility-container']/a")).click();
         //wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='typeahead-wrap']/input")));
         condition = driver.findElement(By.xpath(".//*[@class='typeahead-wrap']/input"));
@@ -299,7 +299,7 @@ public class SmokeTest {
 
     //Set engagement and save
     @Test(priority = 20)
-    public void step20() throws Exception {
+    public void setEngagementAndFinish() throws Exception {
         WebElement slider = driver.findElement(By.xpath(".//*[@class='project-container'][1]/div[3]/div[1]/div[1]/span"));
 
         Actions move = new Actions(driver);
