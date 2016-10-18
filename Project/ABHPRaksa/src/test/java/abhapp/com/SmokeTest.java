@@ -238,7 +238,7 @@ public class SmokeTest {
                 }
         }
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='heading project-heading']"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='heading project-heading']")));
 
         condition = driver.findElement(By.xpath(".//span[contains(text(),'TestProject1SMOKE')]"));
         Assert.assertTrue(condition.isDisplayed());
