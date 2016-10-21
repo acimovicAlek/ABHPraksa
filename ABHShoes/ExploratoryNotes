@@ -1,0 +1,20 @@
+ABHShoes Notes:
+
+-Mogu dodati negativnu kolicinu artikala u korpu
+-Telefonski broj nije validiran, unio "Neki ludi broj"
+-Napravio sam uplatu od -1000$ na karticu, izbacilo je error vjerovatno radi strapove validacije
+-Validacija unosa negativne cijene pri pretrazi cipela
+-Moguce je pretraziti sa nelogicnim opsegom cijena
+-Unutar kolica ukoliko promjenim kolicinu u polju ne azuriraju se ostali elementi, mozda se nista i ne desi
+-I sa kolicinom nula ne prolazi uplata
+-Nisam dobio e-mail prilikom zavrsene kupovine
+-Implementirati obavjest o promjeni passworda
+-Kreirani Accounti samo sa " -" imenima improve this
+-Kreirao sam Account sa passwordom od samo 5 razmaka
+-Uspio sam da kupim -100 cipela u kombinaciji sa 150 drugih, ovaj put jer je balans bio pozitivan placanje je savrseno proslo
+-Kada hocu da dodam nesto u korpu a u trenutku nisam logovan, nakon logovanja bilo bi uredu da se ostane na tom proizvodu ili da se ubaci u korpu
+-U korpi treba progres tab urediti odskace
+-Koja je razlika izmedju funkcioja kupi odmah i dodaj u korpu, valjda bi dodaj u korpu trebalo samo da artikal doda u korpu a da i ne navigira do nje u istom trenutku
+-Moguce je kreirati duplicirane adrese
+-Nije moguce brisati adrese
+
