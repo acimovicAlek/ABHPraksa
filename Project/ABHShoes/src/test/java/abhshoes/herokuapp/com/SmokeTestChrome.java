@@ -3,7 +3,7 @@ package abhshoes.herokuapp.com;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,10 +18,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by infloop on 10/21/16.
  */
-public class SmokeTest {
+public class SmokeTestChrome {
 
-    WebDriver driver = new FirefoxDriver();
+    WebDriver driver = new ChromeDriver();
     WebDriverWait wait;
+    int stripe_version = 0;
 
     @BeforeTest
     public void beforeTest(){
@@ -83,7 +84,7 @@ public class SmokeTest {
     @Test(priority = 5)
     public void goToCart(){
 
-        new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("40");
+            new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("37");
         driver.findElement(By.xpath(".//*[@id='quantity']")).sendKeys("\b5");
         new Select(driver.findElement(By.xpath(".//*[@id='color']"))).selectByValue("Zelena");
         driver.findElement(By.xpath("html/body/div[1]/div[1]/div[3]/form/input[4]")).click();
@@ -96,7 +97,7 @@ public class SmokeTest {
              elements) {
 
             if(
-                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 40")
+                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 37")
                     && i.findElement(By.xpath(".//div/h4[3]")).getText().equals("Color: Zelena")
                     ){
                         criterium = true;
@@ -135,7 +136,7 @@ public class SmokeTest {
         driver.findElement(By.xpath(".//*[@id='address_address']")).sendKeys("Test Address 1");
         driver.findElement(By.xpath(".//*[@id='address_city']")).sendKeys("TestCity");
         driver.findElement(By.xpath(".//*[@id='address_state']")).sendKeys("TestState");
-        driver.findElement(By.xpath(".//*[@id='address_zip']")).sendKeys("7 1000");
+        driver.findElement(By.xpath(".//*[@id='address_zip']")).sendKeys("71000");
         new Select(driver.findElement(By.xpath(".//*[@id='address_country']"))).selectByValue("BA");
         driver.findElement(By.xpath(".//*[@id='address_phone_number']")).sendKeys("033111111");
         driver.findElement(By.xpath(".//*[@id='new_address']/input[3]")).click();
@@ -151,7 +152,6 @@ public class SmokeTest {
 
         boolean condition = true;
 
-        Thread.sleep(2000);
 
         driver.switchTo().frame(driver.findElement(By.xpath("html/body/iframe[2]")));
 
@@ -160,17 +160,51 @@ public class SmokeTest {
         }catch (Exception e){
             condition = false;
         }
-        Assert.assertTrue(condition);
+
+        stripe_version = condition?1:stripe_version;
+
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='body']/div[1]/div[1]/div/div/fieldset/span/div/div[1]/input")));
+            condition = true;
+        }catch (Exception e){
+                condition = false;
+        }
+
+        stripe_version = condition?2:stripe_version;
+
+        Assert.assertNotEquals(stripe_version,0);
     }
 
     @Test(priority = 10)
     public void enterCreditCard(){
-        driver.findElement(By.xpath(".//*[@id='email']")).sendKeys("acimovic.alek@gmail.com");
-        driver.findElement(By.xpath(".//*[@id='card_number']")).sendKeys("4242424242424242");
-        driver.findElement(By.xpath(".//*[@id='cc-exp']")).sendKeys("130");
-        driver.findElement(By.xpath(".//*[@id='cc-csc']")).sendKeys("1111");
-        driver.findElement(By.xpath(".//*[@id='submitButton']")).click();
 
+        if(stripe_version == 1) {
+            driver.findElement(By.xpath(".//*[@id='email']")).sendKeys("acimovic.alek@gmail.com");
+
+            String input = "4242424242424242";
+            for(int i = 0; i < input.length(); i++)
+                driver.findElement(By.xpath(".//*[@id='card_number']")).sendKeys(input.substring(i,i+1));
+
+            input = "130";
+            for(int i = 0; i < input.length(); i++)
+                driver.findElement(By.xpath(".//*[@id='cc-exp']")).sendKeys(input.substring(i,i+1));
+
+            driver.findElement(By.xpath(".//*[@id='cc-csc']")).sendKeys("1111");
+            driver.findElement(By.xpath(".//*[@id='submitButton']")).click();
+        }else if(stripe_version == 2){
+            driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[1]/div/div/fieldset/span/div/div[1]/input")).sendKeys("acimovic.alek@gmail.com");
+
+            String input = "4242424242424242";
+            for(int i = 0; i < input.length(); i++)
+                driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/span/span/div/div[1]/input")).sendKeys(input.substring(i,i+1));
+
+            input = "130";
+            for(int i = 0; i < input.length(); i++)
+                driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/div/div[1]/div[1]/input")).sendKeys(input.substring(i,i+1));
+
+            driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/div/div[2]/div[1]/input")).sendKeys("1111");
+            driver.findElement(By.xpath(".//*[@id='container']/section/span[2]/div/div/main/nav/div/div/div/button")).click();
+        }
         boolean condition = true;
 
         try {

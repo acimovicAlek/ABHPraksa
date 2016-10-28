@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Sample Suite">
+    <test name="Smoke">
+        <classes>
+            <class name="abhshoes.herokuapp.com.SmokeTestChrome" />
+            <class name="abhshoes.herokuapp.com.SmokeTestFirefox"/>
+        </classes>
+    </test>
+</suite>
