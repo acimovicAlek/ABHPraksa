@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="testing">
+    <test name="Smoke">
+        <parameter name = "driverSelected" value = "Firefox"/>
+        <classes>
+            <class name="abhshoes.herokuapp.com.SmokeTest"/>
+        </classes>
+    </test>
+</suite>

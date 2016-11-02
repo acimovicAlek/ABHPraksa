@@ -3,7 +3,7 @@ package abhshoes.herokuapp.com;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,9 +18,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by infloop on 10/21/16.
  */
-public class SmokeTestChrome {
+public class SmokeTestFirefox {
 
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver = new FirefoxDriver();
     WebDriverWait wait;
     int stripe_version = 0;
 
@@ -84,9 +84,9 @@ public class SmokeTestChrome {
     @Test(priority = 5)
     public void goToCart(){
 
-            new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("37");
+            new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("38");
         driver.findElement(By.xpath(".//*[@id='quantity']")).sendKeys("\b5");
-        new Select(driver.findElement(By.xpath(".//*[@id='color']"))).selectByValue("Zelena");
+        new Select(driver.findElement(By.xpath(".//*[@id='color']"))).selectByValue("Crvena");
         driver.findElement(By.xpath("html/body/div[1]/div[1]/div[3]/form/input[4]")).click();
 
         boolean criterium = false;
@@ -97,8 +97,8 @@ public class SmokeTestChrome {
              elements) {
 
             if(
-                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 37")
-                    && i.findElement(By.xpath(".//div/h4[3]")).getText().equals("Color: Zelena")
+                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 38")
+                    && i.findElement(By.xpath(".//div/h4[3]")).getText().equals("Color: Crvena")
                     ){
                         criterium = true;
                         break;
@@ -176,7 +176,7 @@ public class SmokeTestChrome {
     }
 
     @Test(priority = 10)
-    public void enterCreditCard(){
+    public void enterCreditCard() throws InterruptedException {
 
         if(stripe_version == 1) {
             driver.findElement(By.xpath(".//*[@id='email']")).sendKeys("acimovic.alek@gmail.com");
@@ -184,24 +184,19 @@ public class SmokeTestChrome {
             String input = "4242424242424242";
             for(int i = 0; i < input.length(); i++)
                 driver.findElement(By.xpath(".//*[@id='card_number']")).sendKeys(input.substring(i,i+1));
-
             input = "130";
             for(int i = 0; i < input.length(); i++)
                 driver.findElement(By.xpath(".//*[@id='cc-exp']")).sendKeys(input.substring(i,i+1));
-
             driver.findElement(By.xpath(".//*[@id='cc-csc']")).sendKeys("1111");
             driver.findElement(By.xpath(".//*[@id='submitButton']")).click();
         }else if(stripe_version == 2){
             driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[1]/div/div/fieldset/span/div/div[1]/input")).sendKeys("acimovic.alek@gmail.com");
-
             String input = "4242424242424242";
             for(int i = 0; i < input.length(); i++)
                 driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/span/span/div/div[1]/input")).sendKeys(input.substring(i,i+1));
-
             input = "130";
             for(int i = 0; i < input.length(); i++)
                 driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/div/div[1]/div[1]/input")).sendKeys(input.substring(i,i+1));
-
             driver.findElement(By.xpath(".//*[@id='body']/div[1]/div[2]/fieldset/div[1]/div/div[2]/div[1]/input")).sendKeys("1111");
             driver.findElement(By.xpath(".//*[@id='container']/section/span[2]/div/div/main/nav/div/div/div/button")).click();
         }
