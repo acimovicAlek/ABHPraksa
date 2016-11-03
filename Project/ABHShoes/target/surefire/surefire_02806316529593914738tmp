@@ -1,0 +1,7 @@
+#surefire_0
+#Sun Oct 30 18:25:47 CET 2016
+basedir=/home/infloop/Documents/Praksa/ABHPraksa/Project/ABHShoes
+tests=testing.xml
+user.dir=/home/infloop/Documents/Praksa/ABHPraksa/Project/ABHShoes
+argLine=-DdriverSelected\=Chrome
+localRepository=/home/infloop/.m2/repository

@@ -1,0 +1,6 @@
+#surefire_0
+#Sun Oct 30 18:18:50 CET 2016
+basedir=/home/infloop/Documents/Praksa/ABHPraksa/Project/ABHShoes
+tests=testing.xml
+user.dir=/home/infloop/Documents/Praksa/ABHPraksa/Project/ABHShoes
+localRepository=/home/infloop/.m2/repository

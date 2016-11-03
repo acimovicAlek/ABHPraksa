@@ -6,4 +6,14 @@
             <class name="abhshoes.herokuapp.com.SmokeTest"/>
         </classes>
     </test>
+    <test name = "Regression">
+        <parameter name ="driverSelected" value = "Firefox"/>
+        <classes>
+            <class name = "abhshoes.herokuapp.com.RegresioNegativeNewAdress"/>
+            <class name ="abhshoes.herokuapp.com.RegresionNegativeRegistration"/>
+            <class name = "abhshoes.herokuapp.com.RegresionNegativeSearch"/>
+            <class name = "abhshoes.herokuapp.com.RegresionSimpleSearch"/>
+            <class name = "abhshoes.herokuapp.com.RegresionNegativeNegativeBuyIn"/>
+        </classes>
+    </test>
 </suite>
