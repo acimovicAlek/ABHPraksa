@@ -8,7 +8,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <!--
     <build>
 
         <sourceDirectory>src</sourceDirectory>
@@ -21,8 +20,18 @@
                 <configuration>
 
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>SmokeSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>parallel</name>
+                            <value>tests</value>
+                        </property>
+                        <property>
+                            <name>threadCount</name>
+                            <value>2</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
 
@@ -36,7 +45,6 @@
             </plugin>
         </plugins>
     </build>
-    -->
     <groupId>abhshoes.herokuapp.com</groupId>
     <artifactId>selenium</artifactId>
     <version>1.0-SNAPSHOT</version>

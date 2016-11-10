@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,6 +16,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -25,17 +28,45 @@ public class SmokeTest {
     WebDriver driver;
     WebDriverWait wait;
     int stripe_version = 0;
+    public String URL, Node;
+
+    protected ThreadLocal<RemoteWebDriver> threadDriver = null;
 
     @BeforeTest
     @Parameters("driverSelected")
     public void beforeTest(String driverSelected) throws Exception {
-        if (driverSelected.equals("Firefox")) driver = new FirefoxDriver();
-        else if (driverSelected.equals("Chrome")) driver = new ChromeDriver();
+
+        String URL = "http://atlant-bh-shoes.herokuapp.com";
+
+        if (driverSelected.equalsIgnoreCase("firefox"))
+        {
+            System.out.println(" Executing on FireFox");
+            String Node = "http://192.168.56.102:5556/wd/hub";
+            DesiredCapabilities cap = DesiredCapabilities.firefox();
+            cap.setBrowserName("firefox");
+
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+            // Puts an Implicit wait, Will wait for 10 seconds before throwing exception
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            // Launch website
+            driver.navigate().to(URL);
+            driver.manage().window().maximize();
+        }
+        else if (driverSelected.equalsIgnoreCase("chrome"))
+        {
+            System.out.println(" Executing on CHROME");
+            DesiredCapabilities cap = DesiredCapabilities.chrome();
+            cap.setBrowserName("chrome");
+            String Node = "http://192.168.56.1:5555/wd/hub";
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            // Launch website
+            driver.navigate().to(URL);
+            driver.manage().window().maximize();
+        }
         else throw new Exception("Invalid parameters!");
-        driver.get("http://atlant-bh-shoes.herokuapp.com/");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 10);
     }
 
     @AfterTest
