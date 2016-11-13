@@ -45,7 +45,7 @@ public class SmokeTest {
             DesiredCapabilities cap = DesiredCapabilities.firefox();
             cap.setBrowserName("firefox");
 
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+            driver = new RemoteWebDriver(new URL("http://localhost:6666/wd/hub"), cap);
             // Puts an Implicit wait, Will wait for 10 seconds before throwing exception
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -59,7 +59,7 @@ public class SmokeTest {
             DesiredCapabilities cap = DesiredCapabilities.chrome();
             cap.setBrowserName("chrome");
             String Node = "http://192.168.56.1:5555/wd/hub";
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+            driver = new RemoteWebDriver(new URL("http://localhost:6666/wd/hub"), cap);
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
             // Launch website
