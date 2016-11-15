@@ -1,20 +1,15 @@
-package abhshoes.herokuapp.com;
+package test.java.abhshoes.herokuapp.com;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.net.URL;
 import java.util.List;
@@ -27,46 +22,34 @@ public class SmokeTest {
 
     WebDriver driver;
     WebDriverWait wait;
-    int stripe_version = 0;
-    public String URL, Node;
-
-    protected ThreadLocal<RemoteWebDriver> threadDriver = null;
 
     @BeforeTest
-    @Parameters("driverSelected")
-    public void beforeTest(String driverSelected) throws Exception {
+    @Parameters({"driverSelected", "param"})
+    public void beforeTest(String driverSelected, @Optional() String param) throws Exception {
 
         String URL = "http://atlant-bh-shoes.herokuapp.com";
 
         if (driverSelected.equalsIgnoreCase("firefox"))
         {
             System.out.println(" Executing on FireFox");
-            String Node = "http://192.168.56.102:5556/wd/hub";
+            String Node = (param=="1"?"http://192.168.56.102:6667/wd/hub":"http://192.168.56.1:6666/wd/hub");
             DesiredCapabilities cap = DesiredCapabilities.firefox();
             cap.setBrowserName("firefox");
 
-            driver = new RemoteWebDriver(new URL("http://localhost:6666/wd/hub"), cap);
-            // Puts an Implicit wait, Will wait for 10 seconds before throwing exception
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-            // Launch website
-            driver.navigate().to(URL);
-            driver.manage().window().maximize();
+            driver = new RemoteWebDriver(new URL(Node), cap);
         }
         else if (driverSelected.equalsIgnoreCase("chrome"))
         {
             System.out.println(" Executing on CHROME");
             DesiredCapabilities cap = DesiredCapabilities.chrome();
             cap.setBrowserName("chrome");
-            String Node = "http://192.168.56.1:5555/wd/hub";
-            driver = new RemoteWebDriver(new URL("http://localhost:6666/wd/hub"), cap);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-            // Launch website
-            driver.navigate().to(URL);
-            driver.manage().window().maximize();
+            String Node = (param=="1"?"http://192.168.56.102:5555/wd/hub":"http://192.168.56.1:6666/wd/hub");
+            driver = new RemoteWebDriver(new URL(Node), cap);
         }
         else throw new Exception("Invalid parameters!");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.navigate().to(URL);
+        driver.manage().window().maximize();
     }
 
     @AfterTest
@@ -77,10 +60,8 @@ public class SmokeTest {
 
     @Test(priority = 1)
     public void goToLogin() {
-        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='bs-example-navbar-collapse-1']/ul[2]/li[1]/a")));
         driver.findElement(By.xpath(".//*[@id='bs-example-navbar-collapse-1']/ul[2]/li[1]/a")).click();
 
-        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("html/body/div[1]/form/div[1]/div")));
         Assert.assertTrue(
                 driver.findElement(By.xpath("html/body/div[1]/form/div[2]/input")).isDisplayed()
                         && driver.getCurrentUrl().equals("http://atlant-bh-shoes.herokuapp.com/login")
@@ -102,7 +83,7 @@ public class SmokeTest {
 
         Assert.assertTrue(
                 driver.findElement(By.xpath("html/body/div[1]/div[2]/div[1]/h4"))
-                        .getText().equals("Dječija obuća")
+                        .getText().equals("SPORTS")
                         && driver.getCurrentUrl().contains("categories")
         );
     }
@@ -121,9 +102,9 @@ public class SmokeTest {
     @Test(priority = 5)
     public void goToCart() {
 
-        new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("37");
-        driver.findElement(By.xpath(".//*[@id='quantity']")).sendKeys("\b5");
-        new Select(driver.findElement(By.xpath(".//*[@id='color']"))).selectByValue("Zelena");
+        new Select(driver.findElement(By.xpath(".//*[@id='size']"))).selectByValue("30");
+        driver.findElement(By.xpath(".//*[@id='quantity']")).sendKeys("\b2");
+        new Select(driver.findElement(By.xpath(".//*[@id='color']"))).selectByValue("Plava");
         driver.findElement(By.xpath("html/body/div[1]/div[1]/div[3]/form/input[4]")).click();
 
         boolean criterium = false;
@@ -134,8 +115,8 @@ public class SmokeTest {
                 elements) {
 
             if (
-                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 37")
-                            && i.findElement(By.xpath(".//div/h4[3]")).getText().equals("Color: Zelena")
+                    i.findElement(By.xpath(".//div/h4[2]")).getText().equals("Size: 30")
+                            && i.findElement(By.xpath(".//div/h4[3]")).getText().equals("Color: Plava")
                     ) {
                 criterium = true;
                 break;
@@ -159,29 +140,14 @@ public class SmokeTest {
     }
 
     @Test(priority = 7)
-    public void clickNewAddress() {
-        driver.findElement(By.xpath(".//*[@id='show-address']")).click();
-
-        Assert.assertTrue(
-                driver.findElement(By.xpath(".//*[@id='new_address']")).isDisplayed()
-        );
-    }
-
-    @Test(priority = 8)
-    public void createNewAddress() {
-        driver.findElement(By.xpath(".//*[@id='address_full_name']")).sendKeys("SmokeTest");
-        driver.findElement(By.xpath(".//*[@id='address_address']")).sendKeys("Test Address 1");
-        driver.findElement(By.xpath(".//*[@id='address_city']")).sendKeys("TestCity");
-        driver.findElement(By.xpath(".//*[@id='address_state']")).sendKeys("TestState");
-        driver.findElement(By.xpath(".//*[@id='address_zip']")).sendKeys("71000");
-        new Select(driver.findElement(By.xpath(".//*[@id='address_country']"))).selectByValue("BA");
-        driver.findElement(By.xpath(".//*[@id='address_phone_number']")).sendKeys("033111111");
-        driver.findElement(By.xpath(".//*[@id='new_address']/input[3]")).click();
+    public void clickCont() {
+        driver.findElement(By.xpath("html/body/div[1]/div[3]/button")).click();
 
         Assert.assertTrue(
                 driver.findElement(By.xpath("html/body/div[1]/div[1]/h3")).getText().equals("Payment")
         );
     }
+
 
     @Test(priority = 9)
     public void clickToPay() throws InterruptedException {

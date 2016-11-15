@@ -18,20 +18,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.14.1</version>
                 <configuration>
-
                     <suiteXmlFiles>
-                        <suiteXmlFile>SmokeSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>${file}</suiteXmlFile>
                     </suiteXmlFiles>
-                    <properties>
-                        <property>
-                            <name>parallel</name>
-                            <value>tests</value>
-                        </property>
-                        <property>
-                            <name>threadCount</name>
-                            <value>2</value>
-                        </property>
-                    </properties>
                 </configuration>
             </plugin>
 

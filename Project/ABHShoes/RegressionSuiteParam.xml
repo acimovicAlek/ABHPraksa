@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="RegressionSuiteParam">
+    <test name = "Regression" parallel="classes" thread-count="2">
+        <parameter name ="driverSelected" value="${driverSelected}"/>
+        <parameter name = "param" value="1"/
+        <classes>
+            <class name = "test.java.abhshoes.herokuapp.com.RegresioNegativeNewAdress"/>
+            <class name ="test.java.abhshoes.herokuapp.com.RegresionNegativeRegistration"/>
+            <class name = "test.java.abhshoes.herokuapp.com.RegresionNegativeSearch"/>
+            <class name = "test.java.abhshoes.herokuapp.com.RegresionSimpleSearch"/>
+            <class name = "test.java.abhshoes.herokuapp.com.RegresionNegativeNegativeBuyIn"/>
+        </classes>
+    </test>
+</suite>

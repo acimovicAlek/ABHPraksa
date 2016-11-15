@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SmokeSuiteParam">
+    <test name="Smoke" >
+        <parameter name = "driverSelected" value="${driverSelected}"/>
+        <parameter name = "param" value="1"/>
+        <classes>
+            <class name="test.java.abhshoes.herokuapp.com.SmokeTest"/>
+        </classes>
+    </test>
+</suite>

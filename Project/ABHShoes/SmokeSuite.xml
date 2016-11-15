@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="SmokeSuite" parallel="tests" thread-count="2" >
     <test name="SmokeFirefox" >
-        <parameter name = "driverSelected" value = "Firefox" parallel="classes" thread-count="2"/>
+        <parameter name = "driverSelected" value = "Firefox"/>
         <classes>
-            <class name="abhshoes.herokuapp.com.SmokeTest"/>
+            <class name="test.java.abhshoes.herokuapp.com.SmokeTest"/>
         </classes>
     </test>
     <test name="SmokeChrome">
-        <parameter name = "driverSelected" value = "Chrome" parallel="classes" thread-count="2"/>
+        <parameter name = "driverSelected" value = "Chrome"/>
         <classes>
-            <class name="abhshoes.herokuapp.com.SmokeTest"/>
+            <class name="test.java.abhshoes.herokuapp.com.SmokeTest"/>
         </classes>
     </test>
 </suite>
