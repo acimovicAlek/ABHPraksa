@@ -29,10 +29,10 @@ public class RegresionNegativeRegistration {
         if (driverSelected.equalsIgnoreCase("firefox"))
         {
             System.out.println(" Executing on FireFox");
-            String Node = (param=="1"?"http://192.168.56.102:6667/wd/hub":"http://192.168.56.1:6666/wd/hub");
+            String Node = (param=="1"?"http://192.168.56.102:6667/wd/hub":"http://192.168.56.101:6666/wd/hub");
             DesiredCapabilities cap = DesiredCapabilities.firefox();
             cap.setBrowserName("firefox");
-
+            System.out.println(Node);
             driver = new RemoteWebDriver(new URL(Node), cap);
         }
         else if (driverSelected.equalsIgnoreCase("chrome"))
@@ -40,7 +40,7 @@ public class RegresionNegativeRegistration {
             System.out.println(" Executing on CHROME");
             DesiredCapabilities cap = DesiredCapabilities.chrome();
             cap.setBrowserName("chrome");
-            String Node = (param=="1"?"http://192.168.56.1:5555/wd/hub":"http://192.168.56.1:6666/wd/hub");
+            String Node = (param=="1"?"http://192.168.56.1:5555/wd/hub":"http://192.168.56.101:6666/wd/hub");
             driver = new RemoteWebDriver(new URL(Node), cap);
         }
         else throw new Exception("Invalid parameters!");
